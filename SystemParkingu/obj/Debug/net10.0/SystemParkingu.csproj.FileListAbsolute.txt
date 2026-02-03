@@ -1,0 +1,14 @@
+C:\Users\oliwi\Desktop\SystemParkingu\bin\Debug\net10.0\SystemParkingu.exe
+C:\Users\oliwi\Desktop\SystemParkingu\bin\Debug\net10.0\SystemParkingu.deps.json
+C:\Users\oliwi\Desktop\SystemParkingu\bin\Debug\net10.0\SystemParkingu.runtimeconfig.json
+C:\Users\oliwi\Desktop\SystemParkingu\bin\Debug\net10.0\SystemParkingu.dll
+C:\Users\oliwi\Desktop\SystemParkingu\bin\Debug\net10.0\SystemParkingu.pdb
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.AssemblyInfoInputs.cache
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.AssemblyInfo.cs
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.csproj.CoreCompileInputs.cache
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.dll
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\refint\SystemParkingu.dll
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.pdb
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\SystemParkingu.genruntimeconfig.cache
+C:\Users\oliwi\Desktop\SystemParkingu\obj\Debug\net10.0\ref\SystemParkingu.dll

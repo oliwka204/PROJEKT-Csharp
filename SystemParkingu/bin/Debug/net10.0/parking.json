@@ -1,0 +1,239 @@
+{
+  "LiczbaWierszy": 5,
+  "LiczbaKolumn": 6,
+  "Miejsca": [
+    {
+      "Wiersz": 0,
+      "Kolumna": 0,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 0,
+      "Kolumna": 1,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 0,
+      "Kolumna": 2,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 0,
+      "Kolumna": 3,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 0,
+      "Kolumna": 4,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 0,
+      "Kolumna": 5,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 0,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 1,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 2,
+      "CzyZajete": true,
+      "NrRej": "RMI92093"
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 3,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 4,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 1,
+      "Kolumna": 5,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 0,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 1,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 2,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 3,
+      "CzyZajete": true,
+      "NrRej": "KK8212"
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 4,
+      "CzyZajete": true,
+      "NrRej": "KK8212"
+    },
+    {
+      "Wiersz": 2,
+      "Kolumna": 5,
+      "CzyZajete": true,
+      "NrRej": "KK8212"
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 0,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 1,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 2,
+      "CzyZajete": true,
+      "NrRej": "KLA82892"
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 3,
+      "CzyZajete": true,
+      "NrRej": "KLA82892"
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 4,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 3,
+      "Kolumna": 5,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 0,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 1,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 2,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 3,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 4,
+      "CzyZajete": false,
+      "NrRej": null
+    },
+    {
+      "Wiersz": 4,
+      "Kolumna": 5,
+      "CzyZajete": false,
+      "NrRej": null
+    }
+  ],
+  "Pojazdy": [
+    {
+      "Typ": "Motocykl",
+      "NrRej": "RMI92093",
+      "Miejsca": [
+        {}
+      ]
+    },
+    {
+      "Typ": "Samochod",
+      "NrRej": "KLA82892",
+      "Miejsca": [
+        {},
+        {}
+      ]
+    },
+    {
+      "Typ": "Ciezarowka",
+      "NrRej": "KK8212",
+      "Miejsca": [
+        {},
+        {},
+        {}
+      ]
+    }
+  ],
+  "Logi": [
+    {
+      "Czas": "2026-02-03T21:52:30.6342004+01:00",
+      "Akcja": "Przyjazd",
+      "NrRej": "KLA89263A"
+    },
+    {
+      "Czas": "2026-02-03T21:52:44.2624767+01:00",
+      "Akcja": "Odjazd",
+      "NrRej": "KLA89263A"
+    },
+    {
+      "Czas": "2026-02-03T21:54:51.8711464+01:00",
+      "Akcja": "Przyjazd",
+      "NrRej": "RMI92093"
+    },
+    {
+      "Czas": "2026-02-03T21:54:58.2531864+01:00",
+      "Akcja": "Przyjazd",
+      "NrRej": "KLA82892"
+    },
+    {
+      "Czas": "2026-02-03T21:55:28.3880952+01:00",
+      "Akcja": "Przyjazd",
+      "NrRej": "KK8212"
+    }
+  ]
+}
