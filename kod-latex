@@ -1,0 +1,351 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{geometry}
+\geometry{
+    left=3.5cm,
+    right=3.5cm,
+    top=3cm,
+    bottom=2cm
+}
+\usepackage{setspace} 
+\usepackage{titlesec} 
+\usepackage{times} 
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{caption}
+\hyphenpenalty=10000
+\usepackage{ragged2e}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+\begin{document}
+\makeatletter
+\renewcommand\refname{}
+\makeatother
+
+\begin{titlepage}
+    \begin{flushleft}
+        \includegraphics[width=10cm]{logoWSIiZ.PNG}
+        \vspace{1cm}
+    \end{flushleft}
+    \begin{flushleft}
+       \hspace{2.2cm} \textbf{\fontsize{16}{19}\selectfont{KOLEGIUM INFORMATYKI STOSOWANEJ}} 
+       
+        \vspace{1cm}
+        
+        \hspace{2.5cm}\textbf{\fontsize{16}{19}\selectfont{Kierunek:}} 
+        \hspace{1cm}\textbf{\fontsize{16}{19}\selectfont{INFORMATYKA}} 
+        
+        \hspace{2.5cm}\textbf{\fontsize{16}{19}\selectfont{Grupa: 3IIZ/2024 L2}} 
+        
+    \end{flushleft}
+    \begin{center}
+        \vspace{2.5cm}
+        \fontsize{14}{17}\selectfont Oliwia Łuszcz \\ Nr albumu studenta: W71338  
+        \vspace{1cm}
+
+        
+        \textbf{\textit{\fontsize{20}{24}\selectfont Programowanie Obiektowe}}\\[1cm]
+        \fontsize{14}{17}\selectfont
+        Pod kierunkiem:  mgr inż. Ewa Żesławska\\[2cm]
+        \vspace{2cm}
+        \textbf{\fontsize{18}{21}\selectfont PROJEKT\\System obsługi parkingu}\\[2cm]
+             \vfill
+        \textbf{\fontsize{14}{17}\selectfont Rzeszów, 2026}
+    \end{center}
+\end{titlepage}
+\cleardoublepage
+\newpage\null\thispagestyle{empty}\newpage
+\tableofcontents
+\newpage
+\section{Cele i opis projektu}
+\sloppy
+Celem projektu jest wykonanie konsolowej aplikacji do zarządzania parkingiem. Aplikacja ta ma umożliwić dokładne zarządzanie parkingiem oraz zabezpieczenie danych przed ich utratą. W dzisiejszych czasach na drogach porusza się ogromna liczba różnych pojazdów, co wiąże się także z dużą liczbą parkingów. Aplikacja przedstawiona w niniejszym projekcie pozwala na sumienne prowadzenie ewidencji parkingu oraz poprawne rozdzielanie i porządkowanie danych.
+
+System potrafi rejestrować przyjazdy oraz odjazdy pojazdów na parking, wizualizować jego stan, obsługiwać numery rejestracyjne i typy pojazdów, zapisywać dane w historii oraz umożliwiać wyszukiwanie informacji po numerach rejestracyjnych lub datach. Dane o stanie parkingu oraz historia zdarzeń są przechowywane w plikach tekstowych w formacie JSON, co zapewnia trwałość danych oraz możliwość ich łatwego odczytu i zapisu.
+
+Projekt został zrealizowany w języku C\#, który jest językiem programowania obiektowego. Do implementacji wykorzystano środowisko Visual Studio Code na systemie operacyjnym Windows 11 Pro. Aplikacja ma formę programu konsolowego z interfejsem tekstowym wyświetlanym w terminalu. Projekt wykorzystuje hierarchię klas dziedziczących po klasie bazowej Pojazd, co umożliwia elastyczne zarządzanie różnymi typami pojazdów, takimi jak motocykle, samochody osobowe, ciężarówki oraz autobusy.
+
+W kolejnych rozdziałach przedstawiono: opis struktury projektu, wymagania projektowe aplikacji, projekt klas, sposób implementacji oraz przykładowe wykorzystanie programu.
+
+Pliki źródłowe do projektu są zamieszczone w repozytorium GitHub pod wskazanym adresem: \\
+\url{https://github.com/oliwka204/PROJEKT-Csharp} \\
+i będą dostępne przez rok od umieszczenia pracy na platformie Moodle..
+\newpage
+\section{Wymagania systemu}
+\sloppy
+\textbf{Wymagania funkcjonalne}
+
+\noindent System powinien umożliwiać:
+\begin{itemize}
+    \item Rejestrację przyjazdu pojazdu na parking.
+    \item Rejestrację odjazdu pojazdu z parkingu.
+    \item Aktualizację numeru rejestracyjnego pojazdu.
+    \item Wizualizację prostokątnego parkingu z podziałem na wiersze i kolumny, oraz z oznaczeniem przejazdów co drugi wiersz.
+    \item Obsługę różnych typów pojazdów: motocykl, samochód osobowy, autobus i ciężarówka.
+    \item Zapisywanie historii przyjazdów i odjazdów.
+    \item Wyszukiwanie pojazdów po numerze rejestracyjnym, oraz po dacie i godzinie zdarzenia.
+\end{itemize}
+\textbf{Wymagania niefunkcjonalne}
+\begin{itemize}
+    \item Aplikacja ma formę programu konsolowego uruchamianego w systemie Windows.
+    \item Interfejs użytkownika powinien być prosty i czytelny, oparty na menu tekstowym.
+    \item System powinien być odporny na błędne dane wejściowe użytkownika (walidacja wprowadzanych wartości).
+    \item Dane o stanie parkingu i historii pracy systemu powinny być prezentowane w sposób przejrzysty.
+    \item System wymaga platformy .NET 10.0.
+    \item Aplikacja jest napisana w taki sposób, aby wykrywać błędy użytkownika.
+    \item Dane przechowywane są w formacie JSON.
+\end{itemize}
+\newpage
+\section{Opis struktury projektu}
+\sloppy
+\noindent Poniższe tabele przedstawiają zestawienie kluczowych klas i metod systemu wraz z ich krótką charakterystyką funkcjonalną:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Klasa} & \textbf{Krótki opis i rola w systemie} \\ \hline
+\texttt{Pojazd} & Abstrakcyjna baza wymuszająca polimorfizm i przechowująca numer rejestracyjny. \\ \hline
+\texttt{Parking} & Klasa główna zarządzająca macierzą miejsc, listą pojazdów i zapisem danych. \\ \hline
+\texttt{Miejsce} & Model reprezentujący pojedynczą komórkę parkingu i jej status zajętości. \\ \hline
+\texttt{Samochod} & Specjalizacja pojazdu zajmująca 2 miejsca w układzie poziomym. \\ \hline
+\texttt{Motocykl} & Najmniejsza jednostka w hierarchii, zajmująca 1 miejsce w macierzy. \\ \hline
+\texttt{Autobus} & Specjalizacja pojazdu definiująca układ blokowy 2x2 (4 miejsca). \\ \hline
+\texttt{Ciezarowka} & Specjalizacja pojazdu zajmująca 3 miejsca w układzie pionowym. \\ \hline
+\texttt{LogWpisu} & Odpowiada za ewidencję historii zdarzeń (daty i typu operacji). \\ \hline
+\end{tabular}
+\caption{Struktura klasowa systemu}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{9cm}|}
+\hline
+\textbf{Metoda} & \textbf{Opis działania} \\ \hline
+\texttt{DodajPojazd} & Sprawdza dostępność miejsc w macierzy i przypisuje do nich obiekt. \\ \hline
+\texttt{UsunPojazd} & Zwalnia komórki w macierzy i rejestruje czas odjazdu. \\ \hline
+\texttt{WyswietlStatus} & Generuje graficzny podgląd parkingu w konsoli ([x] / []). \\ \hline
+\texttt{ZapiszDoPliku} & Serializuje stan systemu do formatu JSON w celu zachowania trwałości. \\ \hline
+\texttt{WczytajZPliku} & Odtwarza stan obiektów z pliku tekstowego przy starcie aplikacji. \\ \hline
+\texttt{WyswietlInfo} & Polimorficzne wypisanie szczegółów technicznych pojazdu. \\ \hline
+\end{tabular}
+\caption{Kluczowe metody systemu}
+\end{table}
+\vspace{20cm}
+\noindent Poniższy diagram  przedstawia strukturę klas i ich wzajemne powiązania. Na schemacie wskazano hierarchię dziedziczenia oraz zastosowany polimorfizm, który pozwala na wspólne zarządzanie różnymi typami pojazdów przez klasę Parking. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{diagramklas.png} 
+    \caption{Diagram klas systemu zarządzania parkingiem (UML)}
+    \label{fig:diagram_klas}
+\end{figure}
+\newpage
+\section{Harmonogram realizacji projektu}
+\sloppy
+Poniższy diagram przedstawia harmonogram wykonania określonych zadań związanych z projektem "System obsługi parkingu". Jak widać na poniższym diagramie, najwięcej czasu w pracy poświęcono na implementacje  logiki parkowania i klas pojazdów oraz na obsługę zapisu i odczytu danych JSON. Było to kluczowe dla poprawnego działania systemu. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{gantt.png} 
+    \caption{Diagram Gantta}
+    \label{fig:diagram_ganta}
+\end{figure}
+\newpage
+\section{Prezentacja warstwy użytkowej projektu}
+Na poniższych zrzutach ekranu z konsoli systemu zarządzania parkingiem przedstawiono działanie menu konsolowego oraz kluczowe funkcjonalności systemu. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S1menu.png}
+    \caption{Menu główne programu}
+    \label{fig:screen_1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S2dodawaniepojazdu-sukces.png}
+    \caption{Opcja 1-dodawanie pojazdu zakończone sukcesem}
+    \label{fig:screen_2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S3dodanienazajetemiejsce.png}
+    \caption{Opcja 1-niepowodzenie(zajęte miejsce na parkingu)}
+    \label{fig:screen_3}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S4niepoprwanewspolrzedne_miejsca _park.png}
+    \caption{Opcja 1-niepowodzenie(podanie złych współrzędnych)}
+    \label{fig:screen_4}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S5pustynrrejestracyjny.png}
+    \caption{Opcja 1-niepowodzenie(podanie pustego numeru rejestracyjnego)}
+    \label{fig:screen_5}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S6samochodsieniemiesci.png}
+    \caption{Opcja 1-niepowodzenie(samochód się nie mieści na podanych współrzędnych)}
+    \label{fig:screen_6}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s7autobusniemiescisie.png}
+    \caption{Opcja 1-niepowodzenie(autobus się nie mieści na podanych współrzędnych)}
+    \label{fig:screen_7}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S8ciezarowkaniemiescisie.png}
+    \caption{Opcja 1-niepowodzenie(ciężarówka się nie mieści na podanych współrzędnych)}
+    \label{fig:screen_8}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s9nieprawidlowytyppojazdu.png}
+    \caption{Opcja 1-niepowodzenie(podanie nieprawidłowego typu pojazdu)}
+    \label{fig:screen_9}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S10niepoprawneliczby-wiersz-kolumna.png}
+    \caption{Opcja 1-niepowodzenie(podanie niepoprawnej wartości dla kolumn/wierszy)}
+    \label{fig:screen_10}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S11pojazdusunietypomyslnie.png}
+    \caption{Opcja 2- pojazd usunięty pomyślnie}
+    \label{fig:screen_11}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S12POJAZD-niematakiego.png}
+    \caption{Opcja 2-niepowodzenie(podanie złego nr rejestracyjnego)}
+    \label{fig:screen_12}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s13b-STATUS-PARKINGU.png}
+    \caption{Opcja 3-pokazuje aktualny status parkingu }
+    \label{fig:screen_13}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S14ZAPIS-DO-PLIKU.png}
+    \caption{Opcja 4-poprawnie zapisano do pliku JSON}
+    \label{fig:screen_14}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s15-wczytanie-z-pliku.png}
+    \caption{Opcja 5-poprawnie wczytano z pliku JSON}
+    \label{fig:screen_15}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s13a-parkingjestpusty.png}
+    \caption{Opcja 6-informacja, że na parkingu nic nie jest zaparkowane}
+    \label{fig:screen_16}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s16-lista-wszystkich-pojazdow.png}
+    \caption{Opcja 6-lista zaparkowanych pojazdów}
+    \label{fig:screen_17}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S17-ZNALEZIONO-PO-NR-REJ.png}
+    \caption{Opcja 7-znaleziono pojazd o podanym nr rejestracyjnym}
+    \label{fig:screen_18}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S18-nie-znaleziono-po-nr-rej.png}
+    \caption{Opcja 7-niepowodzenie(pojazd o podanym nr rejestracyjnym nie jest zaparkowany na parkingu)}
+    \label{fig:screen_19}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s19-logi .png}
+    \caption{Opcja 8-wyświetlenie listy logów}
+    \label{fig:screen_20}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s19-2pustelogi.png}
+    \caption{Opcja 8-brak logów}
+    \label{fig:screen_21}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/S20-AKTUALIZACJANRREEJ.png}
+    \caption{Opcja 9-aktualizacja numeru rejestracyjnego pojazdu}
+    \label{fig:screen_22}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s21-zla-opcja-w-menu.png}
+    \caption{Wybranie opcji, której nie ma w menu}
+    \label{fig:screen_23}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{screeny/s22-wyjscie-z-apki.png}
+    \caption{Opcja 10-wyjście z aplikacji}
+    \label{fig:screen_24}
+\end{figure}
+\newpage
+\section{Podsumowanie}
+\sloppy
+W ramach projektu stworzono funkcjonalny program w języku C\#, który służy do sprawnego zarządzania parkingiem i obsługuje zróżnicowane typy pojazdów. W procesie powstawania aplikacji zastosowano hierarchię klas opartą na dziedziczeniu, co znacząco ułatwiło zarządzanie logiką zajmowania wielu miejsc przez duże pojazdy, takie jak autobusy czy ciężarówki. Za największe wyzwanie projektowe uznałam poprawne sformułowanie struktury klas oraz ich wzajemnego dziedziczenia, a także opracowanie sprawnej logiki działania modułu JSON, odpowiedzialnego za zapis i odczyt danych. Praca nad systemem pozwoliła na rzetelne zaplanowanie struktury obiektowej w środowisku C\#, co okazało się kluczowe dla stabilności całego rozwiązania. Przeprowadzone testy aplikacji zakończyły się pomyślnie, co potwierdziło, że program działa dokładnie tak, jak założono na etapie planowania i tworzenia harmonogramu. W ramach dalszego planu rozwojowego system można urozmaicić o interfejs graficzny (GUI), zastępując standardowe okno konsoli bardziej intuicyjnym oknem graficznym. Dzięki elastyczności klasy bazowej do projektu można w przyszłości dodać nowe metody, takie jak system rezerwacji konkretnych miejsc lub moduł automatycznie obliczający opłatę za postój w zależności od jego długości oraz typu zaparkowanego pojazdu. 
+
+\newpage
+\section{Spis rysunków i tabeli}
+\listoftables
+\listoffigures 
+\newpage
+\section{Bibliografia}
+\begin{thebibliography}{9}
+
+\bibitem[1]{Matulewski2021}
+J.~Matulewski,
+\textit{C\#: lekcje programowania: praktyczna nauka programowania dla platform .NET i .NET Core},
+Helion, Gliwice, 2021.
+
+\bibitem[2]{Albahari2021}
+J.~Albahari, E.~Johannsen,
+\textit{C\# 8.0 w pigułce},
+Helion, Gliwice, 2021 lub nowsze.
+
+\bibitem[3]{Miles2020}
+R.~S.~Miles,
+\textit{C\#: zacznij programować!},
+Helion, Gliwice, 2020 lub nowsze.
+
+\bibitem[4]{Gajda2013}
+W.~Gajda,
+\textit{Git: rozproszony system kontroli wersji},
+Helion, Gliwice, 2013 lub nowsze.
+
+\bibitem[5]{MicrosoftVS}
+Microsoft,
+\textit{Visual Studio — dokumentacja},
+\url{https://learn.microsoft.com/pl-pl/visualstudio/windows/?view=visualstudio},
+[dostęp: 02.02.2026].
+
+\bibitem[6]{JSON}
+\textit{Jak zapisywać obiekty .NET jako JSON (serializacja)},
+\url{https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to},
+[dostęp: 02.02.2026].
+\end{thebibliography}
+\end{document}
